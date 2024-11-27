@@ -1,0 +1,17 @@
+datasource db {
+  provider = "mysql"
+  url      = "mysql://root:senha@localhost:3306/taxi_db"
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Corrida {
+  id           Int      @id @default(autoincrement())
+  motorista    String
+  passageiro   String
+  distancia    Float
+  valor        Float
+  dataRegistro DateTime @default(now())
+}

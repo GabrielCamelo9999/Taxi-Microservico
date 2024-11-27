@@ -1,0 +1,29 @@
+networks:
+  app-network:
+    driver: bridge
+
+services:
+  api-gateway:
+    build:
+      context: ./api-gateway
+    networks:
+      - app-network
+    ports:
+      - "3000:3000"
+
+  corrida-service:
+    build:
+      context: ./corrida-service
+    networks:
+      - app-network
+    ports:
+      - "3001:3001"
+
+  rabbitmq:
+    image: rabbitmq:3-management
+    networks:
+      - app-network
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+
